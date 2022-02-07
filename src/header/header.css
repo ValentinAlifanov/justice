@@ -205,7 +205,7 @@
     }
     
     .nav-list li:not(:last-child){
-        padding-right: 40px;
+        padding-right: 20px;
     }
     
     .nav-list li a:hover{
@@ -240,10 +240,12 @@
     
     .user-avatar-box {
         margin-right: 148px;
+        width: 48px;
+        height: 48px;
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
     .nav-list li a{
         text-decoration: none;
         color: #1F1F1F;
@@ -317,6 +319,8 @@
     
     .user-avatar-box {
         margin-right: 148px;
+        width: 48px;
+        height: 48px;
     }
 } 
 

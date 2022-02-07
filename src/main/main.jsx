@@ -25,7 +25,8 @@ const AddTaskForm = ({ addTask }) => {
   );
 }
 
-const ToDoList = () => {
+function ToDoList () {
+  const [flag, setFlag] = useState('tasks')
 
   const [tasks, setTasks] = useState([{
         text: "Выбрать хостинг для сайта",
@@ -47,30 +48,55 @@ const ToDoList = () => {
         text: "Отдать проект на проверку",
     }]);
 
-  const addTask = text => setTasks([...tasks, { text }]);
+  const [prompts, setPrompts] = useState([{
+        text: "Напоминание - не проспать дедлайн",
+    }]);
 
-  const toggleTask = index => {
-    const newTasks = [...tasks];
-    setTasks(newTasks);
-  };
+  const [more, setMore] = useState([{
+        text: "Еще - вот бы попасть в Justice",
+    }]);
+
+  const addTask = text => {
+    if (flag == 'tasks') {
+      setTasks([...tasks, { text }]);
+    }
+    if (flag == 'prompts') {
+      setPrompts([...prompts, { text }]);
+    }
+    if (flag == 'more') {
+      setMore([...more, { text }]);
+    }
+  }
+  
+  function renderSwitch(param) {
+    switch(param) {
+      case 'tasks':
+        return tasks;
+      case 'prompts':
+          return prompts;
+      case 'more':
+          return more;
+    }
+  }  
 
   return (
     <main className='main-box'>
         <div className='main-upper-box'>
             <div className='button-groupe__left'>
-                <button id='button-1'>Список</button>
-                <button id='button-2'>Напоминания</button>
-                <button id='button-3'>Еще</button>
+                <button id='button-1' style={{backgroundColor: flag == 'tasks' ? '#F4F5FE' : 'white'}} onClick={() => setFlag('tasks')}>Список</button>
+                <button id='button-2' style={{backgroundColor: flag == 'prompts' ? '#F4F5FE' : 'white'}} onClick={() => setFlag('prompts')}>Напоминания</button>
+                <button id='button-3' style={{backgroundColor: flag == 'more' ? '#F4F5FE' : 'white'}} onClick={() => setFlag('more')}>Еще</button>
             </div>
             <div className='button-groupe__right'>  
                 <AddTaskForm addTask={addTask} />
             </div>
         </div>
         <div className="to-do-list">
-            {tasks.map((task, index) => (
+            {
+            renderSwitch(flag).map((item, index) => (
             <div className="todo-item-box">
-                <span className='todo-item-text' onClick={() => toggleTask(index)} >
-                {task.text}
+                <span className='todo-item-text'>
+                {item.text}
                 </span>
             </div>
                 ))}  
@@ -78,7 +104,6 @@ const ToDoList = () => {
     </main>
   );
 }
-
 
 export default function Main() {
     return (
