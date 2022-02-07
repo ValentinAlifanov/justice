@@ -239,7 +239,7 @@
     }
     
     .user-avatar-box {
-        margin-right: 148px;
+        margin-right: 108px;
         width: 48px;
         height: 48px;
     }
@@ -255,7 +255,8 @@
         position: fixed;
         top: 0;
         left: 0;
-        right: 0;
+        width: 100%;
+ 
     
         background: #FFFFFF;
         border-bottom: 1px solid #F4F5F4;
@@ -318,9 +319,9 @@
     }
     
     .user-avatar-box {
-        margin-right: 148px;
         width: 48px;
         height: 48px;
+        margin-right: 108px;
     }
 } 
 
